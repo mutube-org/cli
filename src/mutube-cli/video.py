@@ -1,28 +1,23 @@
 import requests
 
+
 def get_video_snippet(youtube, video_id):
-    request = youtube.videos().list(
-        part="snippet",
-        id=video_id
-    )
+    request = youtube.videos().list(part="snippet", id=video_id)
     response = request.execute()
     return response
+
 
 def get_video_statistics(youtube, video_id):
-    request = youtube.videos().list(
-        part="statistics",
-        id=video_id
-    )
+    request = youtube.videos().list(part="statistics", id=video_id)
     response = request.execute()
     return response
 
+
 def get_channel_id_from_video_id(youtube, video_id):
-    request = youtube.videos().list(
-        part="snippet",
-        id=video_id
-    )
+    request = youtube.videos().list(part="snippet", id=video_id)
     response = request.execute()
     return response["items"][0]["snippet"]["channelId"]
+
 
 def is_short(video_id):
     short_url = f"https://www.youtube.com/shorts/{video_id}"
@@ -38,7 +33,7 @@ def is_short(video_id):
 
     except Exception:
         return False
-    
+
 
 def find_nearby_videos(youtube, video_id):
     channel_id = get_channel_id_from_video_id(youtube, video_id)
@@ -51,7 +46,7 @@ def find_nearby_videos(youtube, video_id):
         type="video",
         order="date",
         maxResults=50,
-        publishedBefore=video_published_at
+        publishedBefore=video_published_at,
     )
     response = request.execute()
     num_videos = 0
@@ -62,7 +57,7 @@ def find_nearby_videos(youtube, video_id):
             videos.append(video)
             if num_videos >= 10:
                 break
-    
+
     for video in videos:
         video_id = video["id"]["videoId"]
         stats = get_video_statistics(youtube, video_id)
@@ -70,5 +65,5 @@ def find_nearby_videos(youtube, video_id):
             video["statistics"] = stats["items"][0]["statistics"]
         else:
             video["statistics"] = {"viewCount": "0"}
-    
+
     return videos

@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from googleapiclient import discovery
 
+
 def initialize_youtube_client():
     load_dotenv()
     # Disable OAuthlib's HTTPS verification when running locally.
@@ -12,6 +13,7 @@ def initialize_youtube_client():
     api_version = "v3"
 
     youtube = discovery.build(
-        api_service_name, api_version, developerKey=os.getenv("YOUTUBE_API_KEY"))
-    
+        api_service_name, api_version, developerKey=os.getenv("YOUTUBE_API_KEY")
+    )
+
     return youtube
