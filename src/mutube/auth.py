@@ -12,8 +12,6 @@ def initialize_youtube_client():
             "YouTube API key not found. Please set it using 'mutube key YOUR_API_KEY'"
         )
 
-    youtube = discovery.build(
-        api_service_name, api_version, developerKey=api_key
-    )
+    youtube = discovery.build(api_service_name, api_version, developerKey=api_key)
 
     return youtube

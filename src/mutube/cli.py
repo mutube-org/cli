@@ -11,28 +11,26 @@ from .video import find_nearby_videos
 import click
 from .config import set_api_key
 
+
 @click.group()
 def cli():
-    """µ-tube - YouTube video analytics tool"""
     pass
 
+
 @cli.command()
-@click.argument('api_key')
+@click.argument("api_key")
 def key(api_key):
     """Set your YouTube API key.
-    
+
     API_KEY: Your YouTube Data API v3 key
     """
     set_api_key(api_key)
     console.print("[green]YouTube API key has been set successfully![/green]")
 
+
 @cli.command()
-@click.argument('url')
+@click.argument("url")
 def analyze(url):
-    """Analyze a YouTube video's view count relative to similar videos.
-    
-    URL: The YouTube video URL or ID to analyze
-    """
     video_id = parse_youtube_url(url)
     youtube = initialize_youtube_client()
 
@@ -79,8 +77,10 @@ def analyze(url):
 
     console.print(table)
 
+
 def main():
     cli()
+
 
 if __name__ == "__main__":
     main()
