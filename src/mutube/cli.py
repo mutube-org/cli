@@ -1,5 +1,5 @@
-from auth import initialize_youtube_client
-from utils import (
+from .auth import initialize_youtube_client
+from .utils import (
     console,
     format_number,
     decode_html_entities,
@@ -7,16 +7,32 @@ from utils import (
     parse_youtube_url,
 )
 from rich.table import Table
-from video import find_nearby_videos
-import sys
+from .video import find_nearby_videos
+import click
+from .config import set_api_key
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        console.print("[red]Error: Please provide a YouTube URL or video ID[/red]")
-        console.print("Usage: mutube <youtube_url>")
-        sys.exit(1)
+@click.group()
+def cli():
+    """µ-tube - YouTube video analytics tool"""
+    pass
 
-    url = sys.argv[1]
+@cli.command()
+@click.argument('api_key')
+def key(api_key):
+    """Set your YouTube API key.
+    
+    API_KEY: Your YouTube Data API v3 key
+    """
+    set_api_key(api_key)
+    console.print("[green]YouTube API key has been set successfully![/green]")
+
+@cli.command()
+@click.argument('url')
+def analyze(url):
+    """Analyze a YouTube video's view count relative to similar videos.
+    
+    URL: The YouTube video URL or ID to analyze
+    """
     video_id = parse_youtube_url(url)
     youtube = initialize_youtube_client()
 
@@ -62,3 +78,9 @@ if __name__ == "__main__":
             )
 
     console.print(table)
+
+def main():
+    cli()
+
+if __name__ == "__main__":
+    main()
