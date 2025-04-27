@@ -1,5 +1,7 @@
 # µ-tube
 
+Open source 1of10/Viewstats alternative. Find out if a youtube video is a relative outlier.
+
 <img width="1038" alt="Screenshot 2025-04-27 at 12 14 48 AM" src="https://github.com/user-attachments/assets/7892c143-6d2b-41dc-8e55-0e8082763264" />
 
 ## Background
@@ -21,7 +23,7 @@ source $HOME/.local/bin/env # or follow instructions
 uv tool install --python 3.13 mutube
 ```
 
-## 🥯 Usage:
+## 🚀 Usage:
 
 ```bash
 mutube key {YOUTUBE_API_KEY}
