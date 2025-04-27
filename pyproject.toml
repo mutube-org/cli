@@ -1,6 +1,6 @@
 [project]
 name = "mutube"
-version = "0.1.1"
+version = "0.1.2"
 description = "Open source 1of10/Viewstats alternative. Find out if a youtube video is a relative outlier."
 readme = "README.md"
 requires-python = ">=3.13"
