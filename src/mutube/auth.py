@@ -1,13 +1,8 @@
-import os
 from googleapiclient import discovery
 from .config import get_api_key
 
 
 def initialize_youtube_client():
-    # Disable OAuthlib's HTTPS verification when running locally.
-    # *DO NOT* leave this option enabled in production.
-    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-    scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
     api_service_name = "youtube"
     api_version = "v3"
 
