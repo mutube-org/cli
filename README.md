@@ -29,7 +29,7 @@ uv tool install --python 3.13 mutube
 # add api key found from google cloud for YouTube v3 (will add instructions on this later)
 mutube key {YOUTUBE_API_KEY}
 # currently the only supported feature is finding out if some input URL is a relative outlier compared to the 9 videos before it (screenshot at the top)
-mutube analyze {YOUTUBE_VIDEO_URL}
+mutube analyze "{YOUTUBE_VIDEO_URL}"
 ```
 
 ## 🔄 Update

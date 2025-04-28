@@ -47,4 +47,7 @@ def parse_youtube_url(url):
     
     raise ValueError("Invalid YouTube URL")
 
+if __name__ == "__main__":
+    print(parse_youtube_url("https://youtu.be/yVs55ffK__s"))
+
 console = Console()
